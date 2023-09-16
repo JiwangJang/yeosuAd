@@ -1,0 +1,147 @@
+@font-face {
+  font-family: aggro-bold;
+  src: url("./public/font/aggro-bold.ttf");
+}
+@font-face {
+  font-family: aggro-medium;
+  src: url("./public/font/aggro-medium.ttf");
+}
+@font-face {
+  font-family: aggro-light;
+  src: url("./public/font/aggro-light.ttf");
+}
+
+@keyframes landing-rotate {
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+body {
+  margin: 0;
+  height: 500vh;
+}
+/* 
+body::-webkit-scrollbar {
+  display: none;
+} */
+
+.landing {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  z-index: 10;
+}
+
+.mascot {
+  width: 340px;
+  height: 200px;
+  background-image: url("./public/svg/hand-down.svg");
+  cursor: pointer;
+  z-index: 1;
+}
+.mascot:hover {
+  background-image: url("./public/svg/hand-up.svg");
+}
+
+.mascot:hover ~ .circle-con {
+  animation-duration: 5s;
+}
+
+.mascot.active,
+.circle-con.active {
+  transition: 1.5s;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  font-family: aggro-medium;
+  fill: white;
+  transform-origin: 50% 50%;
+}
+
+.circle-con {
+  position: absolute;
+  animation: landing-rotate 15s linear alternate infinite;
+  transition: 2s;
+}
+
+.door-1,
+.door-2 {
+  position: absolute;
+  width: 50vw;
+  height: 100vh;
+  background-color: #0082cc;
+  top: 0;
+  z-index: -1;
+  transition: 2s;
+  transition-delay: 2s;
+}
+
+.door-1 {
+  left: 0;
+  transform-origin: left;
+}
+
+.door-2 {
+  right: 0;
+  transform-origin: right;
+}
+
+.door-1.active {
+  transform: rotateY(150deg);
+}
+.door-2.active {
+  transform: rotateY(-150deg);
+}
+
+.content-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  height: 0;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.content-1 {
+  background-color: red;
+}
+.content-2 {
+  background-color: dodgerblue;
+}
+.content-3 {
+  background-color: gold;
+}
+.content-4 {
+  background-color: orange;
+}
+.content-5 {
+  background-color: hotpink;
+}
+
+.content.active {
+  visibility: visible;
+  opacity: 1;
+}
