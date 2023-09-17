@@ -1,34 +1,55 @@
+// 처음 문여는 이벤트 관련 JS
 // const mascot = document.querySelector(".mascot");
 // const circleCon = document.querySelector(".circle-con");
 // const door1 = document.querySelector(".door-1");
 // const door2 = document.querySelector(".door-2");
+
+// window.onload = () => {
+//   window.scrollTo(0, -100);
+// };
 
 // mascot.addEventListener("click", (e) => {
 //   door1.classList.add("active");
 //   door2.classList.add("active");
 //   circleCon.classList.add("active");
 //   e.target.classList.add("active");
+//   setTimeout(() => {
+//     door1.style.display = "none";
+//     door2.style.display = "none";
+//     // document.body.style.overflowY = "auto";
+//   }, 4500);
 // });
 
 const contents = document.querySelectorAll(".content");
+const wheelDown = document.querySelector(".wheel-down");
+const rightRect = document.querySelector(".right-rect");
 
-let scrollHeight = document.body.scrollHeight;
+let scrollHeight = document.body.scrollHeight - window.innerHeight;
 
 const resize = () => {
-  scrollHeight = document.body.scrollHeight;
+  scrollHeight = document.body.scrollHeight - window.innerHeight;
+  door1.style.width = "50vw";
+  door2.style.width = "50vw";
+};
+
+const isBetween = (lowNum, targetNum, highNum) => {
+  if (lowNum < targetNum && targetNum <= highNum) {
+    return true;
+  } else {
+    return false;
+  }
 };
 
 window.addEventListener("scroll", (e) => {
-  console.log(Math.floor((scrollY / scrollHeight) * 100));
-  switch (Math.floor((scrollY / scrollHeight) * 100)) {
-    case 0 <= 20:
-      console.log("0과 20사이");
-      contents[0].classList.add("active");
-      break;
-
-    default:
-      console.log("디폴트");
-      break;
+  const scrollRatio = Math.floor((scrollY / scrollHeight) * 100);
+  console.log(scrollRatio / 10);
+  if (isBetween(0, scrollRatio, 10)) {
+    wheelDown.style.opacity = `${1 - scrollRatio / 10}`;
+  } else if (isBetween(14, scrollRatio, 20)) {
+    const img = contents[0].querySelector(".img");
+    img.classList.add("active");
+    rightRect.classList.add("active");
+    contents[0].classList.add("active");
   }
 });
 

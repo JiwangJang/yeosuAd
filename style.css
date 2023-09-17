@@ -17,17 +17,25 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   height: 500vh;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
 }
-/* 
-body::-webkit-scrollbar {
-  display: none;
-} */
 
+h2,
+p {
+  margin: 0;
+}
+
+/* 맨처음 화면 CSS */
 .landing {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -61,23 +69,26 @@ body::-webkit-scrollbar {
   visibility: hidden;
 }
 
+/* 클릭하라고 어그로끄는거 */
 .circle {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 25px;
+  font-size: 60px;
   font-family: aggro-medium;
   fill: white;
   transform-origin: 50% 50%;
+  letter-spacing: 15px;
 }
 
 .circle-con {
   position: absolute;
-  animation: landing-rotate 15s linear alternate infinite;
+  animation: landing-rotate 20s linear alternate infinite;
   transition: 2s;
 }
 
+/* 문 */
 .door-1,
 .door-2 {
   position: absolute;
@@ -86,8 +97,6 @@ body::-webkit-scrollbar {
   background-color: #0082cc;
   top: 0;
   z-index: -1;
-  transition: 2s;
-  transition-delay: 2s;
 }
 
 .door-1 {
@@ -102,11 +111,16 @@ body::-webkit-scrollbar {
 
 .door-1.active {
   transform: rotateY(150deg);
+  transition: 2s;
+  transition-delay: 2s;
 }
 .door-2.active {
   transform: rotateY(-150deg);
+  transition: 2s;
+  transition-delay: 2s;
 }
 
+/* 본격적인 콘텐츠 */
 .content-area {
   position: fixed;
   top: 0;
@@ -121,27 +135,147 @@ body::-webkit-scrollbar {
   height: 0;
   height: 100vh;
   width: 100vw;
-  opacity: 0;
   visibility: hidden;
-}
-
-.content-1 {
-  background-color: red;
-}
-.content-2 {
-  background-color: dodgerblue;
-}
-.content-3 {
-  background-color: gold;
-}
-.content-4 {
-  background-color: orange;
-}
-.content-5 {
-  background-color: hotpink;
 }
 
 .content.active {
   visibility: visible;
+}
+
+/* 콘텐츠내 이미지 공통 CSS */
+.img {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: calc(100% - 200px);
+  height: 100%;
+  transform: translateX(-800px);
+  opacity: 0;
+  transition-delay: 1s;
+  transition: 2.5s;
+}
+
+.img.active {
+  transform: translateX(0);
   opacity: 1;
+}
+
+.content-1 .img {
+  background-image: url("./public/jpg/mansung-li.jpg");
+}
+
+/* 콘텐츠 내 코멘트 공통 CSS */
+.comment {
+  position: absolute;
+  left: 100px;
+  bottom: 55px;
+  width: 470px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  padding-left: 36px;
+  box-sizing: border-box;
+  color: white;
+}
+
+.comment .comment-title {
+  font-family: aggro-bold;
+  font-size: 50px;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  letter-spacing: -3%;
+}
+
+.comment .comment-main {
+  font-family: aggro-medium;
+  font-size: 30px;
+}
+
+.comment .comment-address {
+  font-family: aggro-light;
+  font-size: 25px;
+  margin-top: 5px;
+  margin-bottom: 25px;
+}
+
+/* 우측 직사각형 */
+.right-rect {
+  position: absolute;
+  width: 200px;
+  height: 100vh;
+  background: #86bdda;
+  right: 0;
+  transform: translateX(200px);
+  opacity: 0;
+  transition: 1.5s;
+}
+
+.right-rect.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+/* 우측상단 숫자 */
+.number {
+  position: absolute;
+  font-family: aggro-bold;
+  color: white;
+  top: 25px;
+  left: 50%;
+  font-size: 75px;
+  letter-spacing: -3px;
+  transform: translateX(-60%);
+}
+.number::after {
+  content: "";
+  height: 4px;
+  width: 100px;
+  background-color: white;
+  position: absolute;
+  top: 97%;
+  left: -5px;
+}
+
+/* 진행률 원 */
+.progress-circles {
+  position: absolute;
+  display: flex;
+  gap: 10px;
+  left: 50%;
+  transform: translateX(-55%);
+  bottom: 30px;
+}
+
+.pg-circle {
+  background-color: white;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+}
+
+.pg-circle.active {
+  background-color: black;
+}
+
+/* 맨처음 스크롤 다운 유도 */
+.wheel-down {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  width: 250px;
+  height: 630px;
+  background: url("./public/svg/mouse-down.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translate(-50%, -50%);
+}
+
+.wheel-down p {
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-45%);
+  font-family: aggro-medium;
+  font-size: 52px;
+  width: 480px;
 }
