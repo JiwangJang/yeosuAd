@@ -23,9 +23,10 @@ html {
 
 body {
   margin: 0;
-  height: 500vh;
+  height: 1000vh;
   overflow-x: hidden;
   /* overflow-y: hidden; */
+  background-color: black;
 }
 
 h2,
@@ -150,10 +151,10 @@ p {
   background-position: center;
   width: calc(100% - 200px);
   height: 100%;
-  transform: translateX(-800px);
+  transform: translateX(-3000px);
   opacity: 0;
   transition-delay: 1s;
-  transition: 2.5s;
+  transition: 2s;
 }
 
 .img.active {
@@ -176,6 +177,15 @@ p {
   padding-left: 36px;
   box-sizing: border-box;
   color: white;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: 1.5s;
+  transition-delay: 2s;
+}
+
+.comment.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .comment .comment-title {
@@ -204,6 +214,7 @@ p {
   width: 200px;
   height: 100vh;
   background: #86bdda;
+  top: 0;
   right: 0;
   transform: translateX(200px);
   opacity: 0;
@@ -247,6 +258,7 @@ p {
 }
 
 .pg-circle {
+  position: relative;
   background-color: white;
   width: 20px;
   height: 20px;
@@ -259,23 +271,26 @@ p {
 
 /* 맨처음 스크롤 다운 유도 */
 .wheel-down {
-  position: absolute;
+  /* position: absolute;
   top: 55%;
-  left: 50%;
-  width: 250px;
-  height: 630px;
+  left: 50%; */
+  /* width: 250px; */
+  height: 100vh;
   background: url("./public/svg/mouse-down.svg");
   background-repeat: no-repeat;
-  background-size: cover;
-  transform: translate(-50%, -50%);
+  background-size: 250px 630px;
+  background-position: center 70%;
+  /* transform: translate(-50%, -50%); */
+  background-color: black;
 }
 
 .wheel-down p {
   position: absolute;
-  top: -80px;
+  top: 100px;
   left: 50%;
   transform: translateX(-45%);
   font-family: aggro-medium;
   font-size: 52px;
   width: 480px;
+  color: white;
 }

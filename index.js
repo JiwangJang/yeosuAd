@@ -13,10 +13,10 @@
 //   door2.classList.add("active");
 //   circleCon.classList.add("active");
 //   e.target.classList.add("active");
+//   document.body.style.overflowY = "auto";
 //   setTimeout(() => {
 //     door1.style.display = "none";
 //     door2.style.display = "none";
-//     // document.body.style.overflowY = "auto";
 //   }, 4500);
 // });
 
@@ -40,6 +40,8 @@ const isBetween = (lowNum, targetNum, highNum) => {
   }
 };
 
+const contentChange = ({ imgUrl, title, main, address }) => {};
+
 window.addEventListener("scroll", (e) => {
   const scrollRatio = Math.floor((scrollY / scrollHeight) * 100);
   console.log(scrollRatio / 10);
@@ -47,9 +49,11 @@ window.addEventListener("scroll", (e) => {
     wheelDown.style.opacity = `${1 - scrollRatio / 10}`;
   } else if (isBetween(14, scrollRatio, 20)) {
     const img = contents[0].querySelector(".img");
+    const comment = contents[0].querySelector(".comment");
     img.classList.add("active");
     rightRect.classList.add("active");
     contents[0].classList.add("active");
+    comment.classList.add("active");
   }
 });
 
