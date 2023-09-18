@@ -23,11 +23,21 @@ html {
 
 body {
   margin: 0;
-  height: 1000vh;
-  overflow-x: hidden;
-  /* overflow-y: hidden; */
-  background-color: black;
 }
+/* 마지막에 스크롤 기능 되게 하기 */
+
+body > div {
+  position: relative;
+  height: 1900vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  background-color: black;
+  transition: 2s;
+}
+
+/* body::-webkit-scrollbar {
+  display: none;
+} */
 
 h2,
 p {
@@ -126,16 +136,14 @@ p {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
+  display: flex;
 }
 
 .content {
-  position: absolute;
-  top: 0;
-  height: 0;
   height: 100vh;
-  width: 100vw;
+  width: calc(100% - 170px);
   visibility: hidden;
 }
 
@@ -145,16 +153,14 @@ p {
 
 /* 콘텐츠내 이미지 공통 CSS */
 .img {
-  position: absolute;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: calc(100% - 200px);
+  width: 100%;
   height: 100%;
-  transform: translateX(-3000px);
+  transform: translateX(-1500px);
   opacity: 0;
-  transition-delay: 1s;
-  transition: 2s;
+  transition: 1s;
 }
 
 .img.active {
@@ -162,7 +168,7 @@ p {
   opacity: 1;
 }
 
-.content-1 .img {
+.content .img {
   background-image: url("./public/jpg/mansung-li.jpg");
 }
 
@@ -180,10 +186,10 @@ p {
   opacity: 0;
   transform: translateY(100px);
   transition: 1.5s;
-  transition-delay: 2s;
 }
 
 .comment.active {
+  transition-delay: 1s;
   opacity: 1;
   transform: translateY(0);
 }
@@ -210,20 +216,15 @@ p {
 
 /* 우측 직사각형 */
 .right-rect {
-  position: absolute;
-  width: 200px;
   height: 100vh;
-  background: #86bdda;
-  top: 0;
-  right: 0;
+  width: 170px;
+  background: rgba(134, 189, 218, 0.8);
   transform: translateX(200px);
-  opacity: 0;
   transition: 1.5s;
 }
 
 .right-rect.active {
   transform: translateX(0);
-  opacity: 1;
 }
 
 /* 우측상단 숫자 */
@@ -233,18 +234,19 @@ p {
   color: white;
   top: 25px;
   left: 50%;
-  font-size: 75px;
+  font-size: 68px;
   letter-spacing: -3px;
-  transform: translateX(-60%);
+  transform: translateX(-50%);
 }
 .number::after {
   content: "";
   height: 4px;
-  width: 100px;
+  width: 110%;
   background-color: white;
   position: absolute;
   top: 97%;
-  left: -5px;
+  left: 50%;
+  transform: translateX(-45%);
 }
 
 /* 진행률 원 */
@@ -253,16 +255,18 @@ p {
   display: flex;
   gap: 10px;
   left: 50%;
-  transform: translateX(-55%);
+  transform: translateX(-50%);
   bottom: 30px;
 }
 
 .pg-circle {
   position: relative;
   background-color: white;
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   border-radius: 100%;
+  transition: 1s;
+  cursor: pointer;
 }
 
 .pg-circle.active {
@@ -271,17 +275,18 @@ p {
 
 /* 맨처음 스크롤 다운 유도 */
 .wheel-down {
-  /* position: absolute;
-  top: 55%;
-  left: 50%; */
-  /* width: 250px; */
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
   height: 100vh;
+  width: 100vw;
   background: url("./public/svg/mouse-down.svg");
   background-repeat: no-repeat;
   background-size: 250px 630px;
   background-position: center 70%;
-  /* transform: translate(-50%, -50%); */
-  background-color: black;
 }
 
 .wheel-down p {
