@@ -137,6 +137,7 @@
     if (isBetween(0, scrollRatio, 10)) {
       wheelDown.style.opacity = `${1 - scrollRatio / 10}`;
     } else {
+      console.log(scrollRatio);
       if (prevScrollY > scrollY) {
         // 스크롤 올릴 때
         switch (scrollRatio) {
@@ -188,6 +189,7 @@
   };
 
   mascot.addEventListener("click", (e) => {
+    window.scrollTo(0, 0);
     door1.classList.add("active");
     door2.classList.add("active");
     circleCon.classList.add("active");
@@ -205,7 +207,7 @@
   });
 
   window.onload = () => {
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
   };
 
   window.addEventListener("scroll", scrollEvent);
