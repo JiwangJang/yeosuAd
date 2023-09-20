@@ -114,7 +114,7 @@
     commentMain.innerHTML = main;
     commentTitle.innerHTML = title;
     rightRect.style.backgroundColor = rgba;
-    img.style.backgroundImage = `url(public/${imgUrl})`;
+    img.style.backgroundImage = `url(./${imgUrl})`;
     number.innerHTML = `0${index + 1}`;
 
     const progressArr = Array.from(
