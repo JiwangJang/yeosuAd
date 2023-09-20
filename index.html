@@ -3,10 +3,33 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>여수관광지 BEST5</title>
+    <meta
+      name="application-name"
+      content="여수의 대표 관광지 5곳을 알아보자!"
+    />
+    <meta name="description" content="여수의 대표 관광지 5곳을 알아보자!" />
+    <meta
+      name="keywords"
+      content="여수관광안내, 돌산갓김치, 게장백반, 서대회, 여수한정식, 갯장어회, 갯장어 샤브샤브, 굴구이, 장어구이, 갈치조림, 새조개샤브샤브, 전어회, 전어구이,오동도, 거문도,백도,향일암, 금오도비렁길, 비렁길, 여수세계박람회장, 진남관, 충무공, 이순신, 여수밤바다, 산단야경, 영취산, 영취산진달래, 진달래, 해상케이블카, 이순신대교, 거북선, 거북선축제, 국제청소년축제, 국제범선축제, 여자만, 여자만갯벌, 진달래체험,갯벌노을체험,향일암일출"
+    />
     <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="./public/favicon.ico" type="image/x-icon" />
   </head>
   <body>
+    <div class="moblie">
+      <p>
+        이 페이지는 모바일기기로<br />
+        <span>보시기엔 다소 불편할 수 있습니다.</span> <br />
+        PC를 통해 이용하시는 것을 <br />
+        권장드립니다.
+      </p>
+      <button
+        onclick="document.querySelector('.moblie').classList.remove('active')"
+      >
+        닫기
+      </button>
+    </div>
     <section class="landing">
       <div class="mascot"></div>
       <div class="circle-con">
@@ -29,7 +52,6 @@
       <div class="door-1"></div>
       <div class="door-2"></div>
     </section>
-
     <div class="wheel-down">
       <p>스크롤을 내려주세요!</p>
     </div>
@@ -53,13 +75,20 @@
         </div>
       </div>
     </section>
-
     <div class="ending">
       <h2>낭만가득한 여수로 놀러오세요~!</h2>
       <div class="book">
-        <div class="korail-book"></div>
+        <a
+          href="https://www.letskorail.com/ebizprd/EbizPrdTicketpr21100W_pr21110.do"
+          target="_blank"
+          class="korail-book"
+        ></a>
         <div class="column-line"></div>
-        <div class="bus-book"></div>
+        <a
+          href="https://www.kobus.co.kr/mrs/rotinf.do"
+          target="_blank"
+          class="bus-book"
+        ></a>
       </div>
       <p>본 페이지에 쓰인 모든 사진의 출처는 여수시 관광페이지임을 밝힙니다</p>
     </div>

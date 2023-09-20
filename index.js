@@ -206,9 +206,13 @@
     window.scrollTo(0, pos);
   });
 
-  window.onload = () => {
-    // window.scrollTo(0, 0);
-  };
+  window.addEventListener("load", () => {
+    const isMoblie = /Mobile/i.test(window.navigator.userAgent);
+    if (isMoblie) {
+      document.querySelector(".moblie").classList.add("active");
+    }
+    window.scrollTo(0, 0);
+  });
 
   window.addEventListener("scroll", scrollEvent);
 

@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 @font-face {
   font-family: aggro-bold;
   src: url("./public/font/aggro-bold.ttf");
@@ -11,14 +18,26 @@
   src: url("./public/font/aggro-light.ttf");
 }
 
+@-webkit-keyframes landing-rotate {
+  100% {
+    -webkit-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+
 @keyframes landing-rotate {
   100% {
+    -webkit-transform: rotateZ(360deg);
     transform: rotateZ(360deg);
   }
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 body {
@@ -27,17 +46,93 @@ body {
   overflow-x: hidden;
   overflow-y: hidden;
   background-color: black;
+  -webkit-transition: 2s;
+  -o-transition: 2s;
   transition: 2s;
 }
-/* 마지막에 스크롤 기능 되게 하기 */
 
-/* body::-webkit-scrollbar {
-  display: none;
-} */
+body::-webkit-scrollbar-track {
+  background-color: white;
+}
+body::-webkit-scrollbar {
+  width: 16px;
+}
+body::-webkit-scrollbar-thumb {
+  height: 120px;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.6);
+  background-clip: content-box;
+  border: 3px solid transparent;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.9);
+}
 
 h2,
 p {
   margin: 0;
+}
+
+/* 모바일 비권장 모달 */
+.moblie {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  z-index: 15;
+  color: rgb(255, 255, 255);
+  font-family: aggro-light;
+  font-size: 28px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: none;
+}
+
+.moblie.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.moblie.active ~ * {
+  display: none;
+}
+
+.moblie p {
+  width: 90%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.moblie p span {
+  letter-spacing: -2px;
+}
+
+.moblie button {
+  outline: none;
+  border: none;
+  font-size: 24px;
+  font-family: aggro-light;
+  background-color: #eee;
+  width: 100px;
+  height: 40px;
+  line-height: 43px;
+  margin-top: 8px;
+  border-radius: 20px;
 }
 
 /* 맨처음 화면 CSS */
@@ -47,10 +142,15 @@ p {
   left: 0;
   width: 100vw;
   height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
-  perspective: 1000px;
   z-index: 10;
 }
 
@@ -66,11 +166,14 @@ p {
 }
 
 .mascot:hover ~ .circle-con {
+  -webkit-animation-duration: 5s;
   animation-duration: 5s;
 }
 
 .mascot.active,
 .circle-con.active {
+  -webkit-transition: 1.5s;
+  -o-transition: 1.5s;
   transition: 1.5s;
   opacity: 0;
   visibility: hidden;
@@ -81,17 +184,24 @@ p {
   position: absolute;
   top: 50%;
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   font-size: 60px;
   font-family: aggro-medium;
   fill: white;
+  -webkit-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
   letter-spacing: 15px;
 }
 
 .circle-con {
   position: absolute;
+  -webkit-animation: landing-rotate 20s linear infinite;
   animation: landing-rotate 20s linear infinite;
+  -webkit-transition: 2s;
+  -o-transition: 2s;
   transition: 2s;
 }
 
@@ -108,22 +218,38 @@ p {
 
 .door-1 {
   left: 0;
+  -webkit-transform-origin: left;
+  -ms-transform-origin: left;
   transform-origin: left;
 }
 
 .door-2 {
   right: 0;
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
   transform-origin: right;
 }
 
 .door-1.active {
-  transform: rotateY(150deg);
+  -webkit-transform: translateX(-50vw);
+  -ms-transform: translateX(-50vw);
+  transform: translateX(-50vw);
+  -webkit-transition: 1s;
+  -o-transition: 1s;
   transition: 1s;
+  -webkit-transition-delay: 1s;
+  -o-transition-delay: 1s;
   transition-delay: 1s;
 }
 .door-2.active {
-  transform: rotateY(-150deg);
+  -webkit-transform: translateX(50vw);
+  -ms-transform: translateX(50vw);
+  transform: translateX(50vw);
+  -webkit-transition: 1s;
+  -o-transition: 1s;
   transition: 1s;
+  -webkit-transition-delay: 1s;
+  -o-transition-delay: 1s;
   transition-delay: 1s;
 }
 
@@ -134,6 +260,8 @@ p {
   left: 0;
   width: 100%;
   height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -154,12 +282,18 @@ p {
   background-position: center;
   width: 100%;
   height: 100%;
+  -webkit-transform: translateX(-1500px);
+  -ms-transform: translateX(-1500px);
   transform: translateX(-1500px);
   opacity: 0;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
   transition: 1s;
 }
 
 .img.active {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
   transform: translateX(0);
   opacity: 1;
 }
@@ -177,16 +311,25 @@ p {
   background-color: rgba(0, 0, 0, 0.4);
   border-radius: 20px;
   padding-left: 36px;
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: white;
   opacity: 0;
+  -webkit-transform: translateY(100px);
+  -ms-transform: translateY(100px);
   transform: translateY(100px);
+  -webkit-transition: 1.5s;
+  -o-transition: 1.5s;
   transition: 1.5s;
 }
 
 .comment.active {
+  -webkit-transition-delay: 1s;
+  -o-transition-delay: 1s;
   transition-delay: 1s;
   opacity: 1;
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
   transform: translateY(0);
 }
 
@@ -215,11 +358,17 @@ p {
   height: 100vh;
   width: 170px;
   background: rgba(134, 189, 218, 0.8);
+  -webkit-transform: translateX(200px);
+  -ms-transform: translateX(200px);
   transform: translateX(200px);
+  -webkit-transition: 1.5s;
+  -o-transition: 1.5s;
   transition: 1.5s;
 }
 
 .right-rect.active {
+  -webkit-transform: translateX(0);
+  -ms-transform: translateX(0);
   transform: translateX(0);
 }
 
@@ -232,6 +381,8 @@ p {
   left: 50%;
   font-size: 68px;
   letter-spacing: -3px;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
   transform: translateX(-50%);
 }
 .number::after {
@@ -242,15 +393,21 @@ p {
   position: absolute;
   top: 97%;
   left: 50%;
+  -webkit-transform: translateX(-45%);
+  -ms-transform: translateX(-45%);
   transform: translateX(-45%);
 }
 
 /* 진행률 원 */
 .progress-circles {
   position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 10px;
   left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
   transform: translateX(-50%);
   bottom: 30px;
 }
@@ -261,6 +418,8 @@ p {
   width: 17px;
   height: 17px;
   border-radius: 100%;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
   transition: 1s;
   cursor: pointer;
 }
@@ -272,8 +431,14 @@ p {
 /* 맨처음 스크롤 다운 유도 */
 .wheel-down {
   position: fixed;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
   justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   top: 0;
   left: 0;
@@ -283,12 +448,17 @@ p {
   background-repeat: no-repeat;
   background-size: 250px 630px;
   background-position: center 70%;
+  -webkit-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
 }
 
 .wheel-down p {
   position: absolute;
-  top: 100px;
+  top: 10%;
   left: 50%;
+  -webkit-transform: translateX(-45%);
+  -ms-transform: translateX(-45%);
   transform: translateX(-45%);
   font-family: aggro-medium;
   font-size: 52px;
@@ -328,43 +498,124 @@ p {
 }
 
 .ending h2 {
-  top: 135px;
+  top: 18%;
   width: 100%;
   font-family: aggro-bold;
   text-align: center;
-  font-size: 70px;
+  font-size: 80px;
   letter-spacing: -5%;
+  -webkit-transition: 0.7s;
+  -o-transition: 0.7s;
+  transition: 0.7s;
 }
 
 .book {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  top: 262px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+  gap: 100px;
+}
+
+.korail-book,
+.bus-book {
+  position: relative;
+  background-position: center center;
+  background-color: rgba(255, 255, 255, 0.8);
+  background-repeat: no-repeat;
+  background-size: 80%;
+  height: 340px;
+  width: 340px;
+  border-radius: 100%;
+  cursor: pointer;
+  -webkit-transition: 0.7s;
+  -o-transition: 0.7s;
+  transition: 0.7s;
+  text-decoration: none;
+  color: white;
 }
 
 .korail-book {
   background-image: url(public/svg/korail.svg);
-  background-position: center center;
-  background-color: rgba(255, 255, 255, 0.8);
-  background-repeat: no-repeat;
-  height: 270px;
-  width: 270px;
-  border-radius: 100%;
-  cursor: pointer;
-  transition: 0.7s;
 }
-.korail-book:hover {
-  transform: scale(1.1);
+.bus-book {
+  background-image: url(public/svg/Bus-logo.svg);
+}
+
+.korail-book:hover,
+.bus-book:hover {
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .korail-book::after {
   content: "기차예매";
+}
+.bus-book::after {
+  content: "버스예매";
+}
+
+.korail-book::after,
+.bus-book::after {
   font-family: aggro-light;
   position: absolute;
   top: 100%;
   left: 50%;
   font-size: 30px;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
   transform: translateX(-50%);
   margin-top: 7px;
+  cursor: default;
+}
+
+.column-line {
+  width: 5px;
+  background-color: white;
+}
+
+.ending p {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  font-family: aggro-light;
+  opacity: 0.6;
+  font-size: 20px;
+}
+
+@media (max-height: 900px) {
+  .wheel-down {
+    background-size: 230px 560px;
+    background-position: center 80%;
+  }
+}
+
+@media (max-width: 1300px) {
+  .ending h2 {
+    font-size: 65px;
+  }
+
+  .korail-book,
+  .bus-book {
+    height: 270px;
+    width: 270px;
+  }
+
+  .korail-book::after,
+  .bus-book::after {
+    font-size: 30px;
+  }
+
+  .ending p {
+    font-size: 20px;
+  }
 }
