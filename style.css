@@ -298,10 +298,6 @@ p {
   opacity: 1;
 }
 
-.content .img {
-  background-image: url("./jpg/mansung-li.jpg");
-}
-
 /* 콘텐츠 내 코멘트 공통 CSS */
 .comment {
   position: absolute;
